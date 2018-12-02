@@ -1,0 +1,31 @@
+@CHARSET "UTF-8";
+#rankList {
+	width:1000px;
+	height:1000px;
+	background-color: white;
+	border-left:1px solid #d3d3d3;
+	border-right:1px solid #d3d3d3;
+	margin:0 auto;
+}
+
+#rank_sort {
+	float:left;
+	width:220px;
+	border-right:1px solid #d3d3d3;
+	height:1150px;
+}
+
+#rank_list{
+	float:right;
+	width:778px;
+}
+
+
+#conmmend{
+	padding-top:30px;
+	padding-left:20px;
+}
+
+#rank_musicList a:hover{
+	text-decoration: none !important;
+}

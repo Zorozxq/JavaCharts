@@ -1,0 +1,48 @@
+@CHARSET "UTF-8";
+#album {
+	width:1000px;
+	overflow:hidden;
+	background-color: white;
+	border-left:1px solid #d3d3d3;
+	border-right:1px solid #d3d3d3;
+	margin:0 auto;
+}
+#Navigation {
+	border-bottom: 2px solid #C10D0C;
+	width:920px;
+	margin:0 auto;
+}
+#songpicture{
+	min-height:900px;
+	height:auto;
+	float:left;
+	margin-top:10px;
+}
+#songpicture1 {
+	height:400px;
+	float:left;
+	margin-top:10px;
+}
+#songpicture ul,#songpicture1 ul{
+	list-style:none;
+}
+#songpicture ul li:first-child,#songpicture1 ul li:first-child{
+	margin-left:5px;
+	float:left;
+}
+#songpicture ul li:not(:first-child),#songpicture1 ul li:not(:first-child){
+	float:left;
+	margin-left:35px;
+}
+
+#songpicture img,#songpicture1 img{
+	height:150px;
+	width:150px;
+}
+#second li,#second1 li{
+	padding-top:30px;
+}
+#paging{
+	width:480px;
+	margin:20px auto;
+}

@@ -1,0 +1,66 @@
+@CHARSET "UTF-8";
+
+#tab-header a:hover{
+	background-color:gray !important;
+	background:-moz-linear-gradient(top,gray,#f6f6f8);
+}
+#tab-header .navbar-brand:hover {
+	background:none !important;
+}
+
+.tab-pane a:hover {
+	border:1px solid #AA2222;
+	border-radius:15px;
+	box-shadow:inset 0px 0px 1px 1px #BE3030;
+	background-color:#990000 !important;
+}
+.tab-pane a {
+}
+#home a {
+	
+}
+td{
+	font-size:13px;
+}
+a{
+	color:black;
+}
+		
+.one, .two	{
+	float:left;
+}
+		
+#goTopBtn {  
+	POSITION: fixed;
+	TEXT-ALIGN: center;
+    LINE-HEIGHT: 30px; 	
+    WIDTH: 30px; 
+    BOTTOM: 35px; 
+    HEIGHT: 180px; 
+    FONT-SIZE: 12px;
+    CURSOR: pointer; 
+    RIGHT: 40px; 
+    _position: absolute; 
+    _right: auto  
+}  
+
+#tab-header {
+	min-width:1400px;
+	background-image:url('./blackBg.png');
+	background-repeat:repeat-x;
+}
+
+#nav-first {
+	width:450px;
+	margin-left:150px;
+	background-image:url('./blackBg.png');
+	background-repeat:repeat-x ;
+	float:none !important;
+	clear:both;
+}
+
+#dropdownMenu1 {
+	margin-top:8px;
+	background-image:url('./bg.png');
+	background-repeat:repeat-x;
+}

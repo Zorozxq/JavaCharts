@@ -1,0 +1,110 @@
+@CHARSET "UTF-8";
+#singer {
+	width:1000px;
+	height:1000px;
+	background-color: white;
+	border-left:1px solid #d3d3d3;
+	border-right:1px solid #d3d3d3;
+	margin:0 auto;
+}
+
+#singer_sort {
+	float:left;
+	width:180px;
+	border-right:1px solid #d3d3d3;
+	
+}
+
+#singer_list{
+	float:right;
+	width:770px;
+	
+}
+
+#conmmend{
+	padding-top:30px;
+	padding-left:20px;
+}
+
+#Chinese_singer{
+	border-top:1px solid #d3d3d3;
+	padding-left:20px;
+}
+
+#Europe_singer{
+	border-top:1px solid #d3d3d3;
+	padding-left:20px;
+}
+
+#Japanese_singer{
+	border-top:1px solid #d3d3d3;
+	padding-left:20px;
+}
+
+#Korea_singer{
+	border-top:1px solid #d3d3d3;
+	padding-left:20px;
+}
+
+#other_singer{
+	border-top:1px solid #d3d3d3;
+	padding-left:20px;
+	height:1100px;
+}
+
+#Letter{
+	padding-top:20px;
+}
+#Letter ul{
+	list-style:none;
+	
+}
+#Letter li{
+	float:left;
+	margin-left:15px;
+}
+
+#singerpicture{
+	padding-top:50px;
+	height:460px;
+	border-bottom:1px dashed #888888;
+}
+
+#singerpicture ul{
+	list-style:none;
+	height:auto;
+	float:left;
+	overflow: hidden;
+	clear:both;
+}
+#singerpicture li:first-child{
+	margin-left:-15px;
+}
+#singerpicture li{
+	float:left;
+	margin-left:15px;
+}
+#second li{
+	padding-top:30px;
+}
+#singername ul{
+	list-style:none;
+	padding-top:20px;
+}
+#singername li{
+	float:left;
+	width:140px;
+}
+#singertable{
+	font-size: 12px;
+	color: #333;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+#singer_musicList a {
+	text-decoration: none !important;
+}
+
+#singer_musicList a:hover{
+	text-decoration: none !important;
+}
