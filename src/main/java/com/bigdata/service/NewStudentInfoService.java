@@ -9,4 +9,6 @@ import java.util.List;
  */
 public interface NewStudentInfoService {
     List<NewStudent> getAllStudent();
+
+    int getAllStudent1();
 }

@@ -9,4 +9,5 @@ import java.util.List;
  */
 public interface newStudentInfoDao {
     List<NewStudent> getAllStudent();
+    int getAllStudent1();
 }

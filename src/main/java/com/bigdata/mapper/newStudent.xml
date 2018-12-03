@@ -7,4 +7,8 @@
     <select id="getAllStudent" resultType="com.bigdata.entity.NewStudent">
         SELECT * FROM newstudentinfo
     </select>
+
+    <select id="getAllStudent1" resultType="int">
+        SELECT score FROM newstudentinfo where name = "jack"
+    </select>
 </mapper>

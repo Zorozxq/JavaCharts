@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bigdata.dao.TingDao">
+
+    <select id="getPlayTotalCount" resultType="BigInteger">
+        SELECT sum(dw_ting.ting_cnt) FROM dw_ting
+    </select>
+
+    <select id="getUserTotalCount" resultType="BigInteger">
+        SELECT sum(dw_ting.ting_user_cnt) FROM dw_ting
+    </select>
+
+    <select id="getAveragePlayTime" resultType="Double">
+        SELECT avg(dw_ting.avg_duration) FROM dw_ting
+    </select>
+
+    <select id="getMaxPlayTime" resultType="Double">
+        SELECT avg(dw_ting.max_duration) FROM dw_ting
+    </select>
+
+</mapper>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bigdata.dao.TingCityDao">
+    <resultMap id="BaseResultMap" type="TingCity">
+        <result column="ting_city_id" jdbcType="INTEGER" property="id"/>
+        <result column="city" jdbcType="VARCHAR" property="cityName"/>
+        <result column="ting_cnt" jdbcType="INTEGER" property="cityplayCount"/>
+        <result column="ting_user_cnt" jdbcType="INTEGER" property="cityUserCount"/>
+
+    </resultMap>
+    <select id="getCityInfo" resultMap="BaseResultMap" resultType="com.bigdata.entity.TingCity">
+        SELECT * FROM dw_ting_city_cnt
+    </select>
+
+</mapper>

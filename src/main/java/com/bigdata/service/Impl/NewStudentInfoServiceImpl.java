@@ -18,4 +18,8 @@ public class NewStudentInfoServiceImpl implements NewStudentInfoService {
     public List<NewStudent> getAllStudent() {
         return studentInfoDao.getAllStudent();
     }
+
+    public int getAllStudent1() {
+        return studentInfoDao.getAllStudent1();
+    }
 }
