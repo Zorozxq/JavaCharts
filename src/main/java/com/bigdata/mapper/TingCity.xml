@@ -12,7 +12,7 @@
 
     </resultMap>
     <select id="getCityInfo" resultMap="BaseResultMap" resultType="com.bigdata.entity.TingCity">
-        SELECT * FROM dw_ting_city_cnt
+        SELECT * FROM dw_ting_city_cnt order by ting_cnt desc limit 4
     </select>
 
 </mapper>

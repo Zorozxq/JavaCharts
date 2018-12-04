@@ -1,5 +1,6 @@
 package com.bigdata.dao;
 
+
 import com.bigdata.entity.Ting;
 import com.bigdata.entity.TingCity;
 
@@ -30,5 +31,10 @@ public interface TingDao {
      * 播放次数最多时长
      */
     Double getMaxPlayTime();
+
+    /**
+     * 总变化图
+     */
+    List<Ting> selectAll();
 
 }

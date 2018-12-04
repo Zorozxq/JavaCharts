@@ -1,6 +1,7 @@
 package com.bigdata.entity;
 
 import java.math.BigInteger;
+import java.util.Date;
 
 public class Ting {
 
@@ -10,9 +11,15 @@ public class Ting {
     private BigInteger userTotalCount; //用户总数
     private Double averagePlayTime; //平均播放时间
     private Double maxPlayTime; //播放次数最多时长
-//    private String cityName;//城市名
-//    private Integer cityplayCount;//本市播放次数
-//    private Integer cityUserCount;//本市用户数
+    private Date date;  //日期
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
     public Integer getId() {
         return id;
@@ -21,30 +28,6 @@ public class Ting {
     public void setId(Integer id) {
         this.id = id;
     }
-
-//    public String getCityName() {
-//        return cityName;
-//    }
-//
-//    public void setCityName(String cityName) {
-//        this.cityName = cityName;
-//    }
-//
-//    public Integer getCityplayCount() {
-//        return cityplayCount;
-//    }
-//
-//    public void setCityplayCount(Integer cityplayCount) {
-//        this.cityplayCount = cityplayCount;
-//    }
-//
-//    public Integer getCityUserCount() {
-//        return cityUserCount;
-//    }
-//
-//    public void setCityUserCount(Integer cityUserCount) {
-//        this.cityUserCount = cityUserCount;
-//    }
 
     public Double getAveragePlayTime() {
         return averagePlayTime;

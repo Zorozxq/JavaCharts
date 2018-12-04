@@ -4,6 +4,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bigdata.dao.TingDao">
+    <resultMap id="BaseResultMap" type="com.bigdata.entity.Ting">
+        <id column="ting_id" jdbcType="INTEGER" property="id" />
+        <result column="ting_cnt" jdbcType="INTEGER" property="playTotalCount" />
+        <result column="ting_user_cnt" jdbcType="INTEGER" property="userTotalCount" />
+        <result column="avg_duration" jdbcType="DOUBLE" property="averagePlayTime" />
+        <result column="max_duration" jdbcType="DOUBLE" property="maxPlayTime" />
+        <result column="ds" jdbcType="DATE" property="date" />
+    </resultMap>
 
     <select id="getPlayTotalCount" resultType="BigInteger">
         SELECT sum(dw_ting.ting_cnt) FROM dw_ting
@@ -19,6 +27,10 @@
 
     <select id="getMaxPlayTime" resultType="Double">
         SELECT avg(dw_ting.max_duration) FROM dw_ting
+    </select>
+
+    <select id="selectAll" resultMap="BaseResultMap" resultType="com.bigdata.entity.Ting">
+        SELECT * FROM dw_ting
     </select>
 
 </mapper>

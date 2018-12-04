@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bigdata.dao.TingSightDao">
+    <resultMap id="BaseResultMap" type="com.bigdata.entity.TingSight">
+        <id column="ting_sight_id" jdbcType="INTEGER" property="tingSightId" />
+        <result column="sight_name" jdbcType="VARCHAR" property="sightName" />
+        <result column="ting_cnt" jdbcType="INTEGER" property="tingCnt" />
+        <result column="ting_user_cnt" jdbcType="INTEGER" property="tingUserCnt" />
+    </resultMap>
+
+    <select id="getSightInfo" resultMap="BaseResultMap" resultType="com.bigdata.entity.TingSight">
+        SELECT * FROM dw_ting_sight_cnt order by ting_cnt desc limit 4
+    </select>
+
+</mapper>

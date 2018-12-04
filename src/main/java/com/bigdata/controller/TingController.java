@@ -3,9 +3,8 @@ package com.bigdata.controller;
 
 import com.bigdata.dao.TingCityDao;
 import com.bigdata.dao.TingDao;
-import com.bigdata.entity.NewStudent;
-import com.bigdata.entity.Ting;
-import com.bigdata.entity.TingCity;
+import com.bigdata.dao.TingGenderDao;
+import com.bigdata.entity.*;
 import com.bigdata.service.TingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +26,7 @@ public class TingController {
     private TingService tingService;
 
     @Autowired
-    private TingCityDao tingCityDao;
+    private TingGenderDao tingGenderDao;
 
 
     @ResponseBody
@@ -47,13 +46,54 @@ public class TingController {
     }
 
 
+    /**
+     * 听：总变化图
+     * @return
+     */
+    @RequestMapping(value = "/totalInfo")
+    @ResponseBody
+    public List<Ting> getTotalInfo() {
+        List<Ting> totalInfo = tingService.getTotalInfo();
+        return totalInfo;
+    }
 
+
+    /**
+     * 听：性别统计图
+     * @return
+     */
+
+    @RequestMapping(value = "/genderInfo")
+    @ResponseBody
+    public List<TingGender> getGenderInfo() {
+        List<TingGender> genderInfo = tingService.getGenderInfo();
+        return genderInfo;
+    }
+
+
+    /**
+     * 听：城市统计
+     * @return
+     */
     @RequestMapping(value = "/cityInfo")
     @ResponseBody
     public List<TingCity> getCityInfo() {
         List<TingCity> cityInfo = tingService.getCityInfo();
         return cityInfo;
     }
+
+    /**
+     * 听：景点类别统计
+     * @return
+     */
+    @RequestMapping(value = "/sightInfo")
+    @ResponseBody
+    public List<TingSight> getSightInfo() {
+        List<TingSight> sightInfo = tingService.getSightInfo();
+        return sightInfo;
+    }
+
+
 
 
 //    @ResponseBody

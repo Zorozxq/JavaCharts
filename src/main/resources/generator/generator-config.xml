@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <context id="MySQLTables" targetRuntime="MyBatis3">
+        <!--关闭注释 -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--数据库连接信息 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://itrip-api.wuhansoftware.com:3306/itrip_datawarehouse?serverTimezone=GMT&amp;useSSL=false"
+                        userId="root"
+                        password="Mydb6."/>
+
+        <!-- JavaBean生成位置 -->
+        <javaModelGenerator
+                targetPackage="com.bigdata.entity"
+                targetProject="./src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- 生成mapper路径 -->
+        <sqlMapGenerator
+                targetPackage="com.bigdata.mapper"
+                targetProject="./src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!-- 生成的Dao接口 的包路径 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.bigdata.dao"
+                             targetProject="./src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        <!-- sql占位符，表示所有的表 -->
+        <table tableName="%" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="epa_id" sqlStatement="Mysql" identity="true"/>
+        </table>
+    </context>
+</generatorConfiguration>
