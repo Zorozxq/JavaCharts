@@ -1,12 +1,14 @@
 package com.bigdata.entity;
 
+import java.util.Date;
+
 public class TingGender {
 
     private Integer id;
     private String gender;  //语音播报人性别
     private Integer tingCnt; //播放次数
     private Integer tingUserCnt; //用户总数
-    private String date; //日期
+    private Date date; //日期
     private Double avgTingCnt; //平均播报次数
 
     public Double getAvgTingCnt() {
@@ -49,11 +51,12 @@ public class TingGender {
         this.tingUserCnt = tingUserCnt;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
+
 }

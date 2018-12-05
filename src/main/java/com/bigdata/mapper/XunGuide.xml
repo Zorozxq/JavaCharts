@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bigdata.dao.XunGuideDao">
+    <resultMap id="BaseResultMap" type="com.bigdata.entity.XunGuide">
+        <id column="xun_guide_id" jdbcType="INTEGER" property="xunGuideId" />
+        <result column="xun_guide_cnt" jdbcType="INTEGER" property="xunGuideCnt" />
+        <result column="xun_gudie_user_cnt" jdbcType="INTEGER" property="xunGudieUserCnt" />
+        <result column="channel_id" jdbcType="VARCHAR" property="channelId" />
+        <result column="channel_name" jdbcType="VARCHAR" property="channelName" />
+    </resultMap>
+
+
+    <select id="getGuideInfo" resultMap="BaseResultMap" resultType="com.bigdata.entity.XunGuide">
+        SELECT * FROM dw_xun_guide order by xun_guide_cnt desc limit 4
+    </select>
+</mapper>

@@ -1,6 +1,5 @@
 package com.bigdata.controller;
 
-
 import com.bigdata.dao.TingCityDao;
 import com.bigdata.dao.TingDao;
 import com.bigdata.dao.TingGenderDao;
@@ -12,7 +11,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
 import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.List;
@@ -91,6 +89,17 @@ public class TingController {
     public List<TingSight> getSightInfo() {
         List<TingSight> sightInfo = tingService.getSightInfo();
         return sightInfo;
+    }
+
+    /**
+     * 听：播放最多语音统计
+     * @return
+     */
+    @RequestMapping(value = "/ChannelInfo")
+    @ResponseBody
+    public List<TingChannel> getChannelInfo() {
+        List<TingChannel> channelInfo = tingService.getChannelInfo();
+        return channelInfo;
     }
 
 

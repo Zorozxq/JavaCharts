@@ -1,9 +1,6 @@
 package com.bigdata.service;
 
-import com.bigdata.entity.Ting;
-import com.bigdata.entity.TingCity;
-import com.bigdata.entity.TingGender;
-import com.bigdata.entity.TingSight;
+import com.bigdata.entity.*;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -38,4 +35,9 @@ public interface TingService {
      * 景点统计图
      */
     List<TingSight> getSightInfo();
+
+    /**
+     * 播放最多语音统计
+     */
+    List<TingChannel> getChannelInfo();
 }

@@ -80,37 +80,37 @@
                                         <td  >
                                             <a class="clear" href="#">
                                                 <strong >寻宝次数</strong>
-                                                <span class="h3 block m-t-xs"><strong>540342</strong></span>
+                                                <span class="h3 block m-t-xs"><strong>${xunTreasureCnt}</strong></span>
                                             </a>
                                         </td>
                                         <td >
                                             <a class="clear" href="#">
                                                 <strong >寻宝用户数</strong>
-                                                <span class="h3 block m-t-xs"><strong >46823</strong></span>
+                                                <span class="h3 block m-t-xs"><strong >${xunTreasureUserCnt}</strong></span>
                                             </a>
                                         </td>
                                         <td >
                                             <a class="clear" href="#">
                                                 <strong >寻宝积分</strong>
-                                                <span class="h3 block m-t-xs"><strong >23 S</strong></span>
+                                                <span class="h3 block m-t-xs"><strong >${xunPointCnt} S</strong></span>
                                             </a>
                                         </td>
                                         <td >
                                             <a class="clear" href="#">
                                                 <strong >寻宝金钱</strong>
-                                                <span class="h3 block m-t-xs"><strong >15 S</strong></span>
+                                                <span class="h3 block m-t-xs"><strong >${xunMoneyCnt} S</strong></span>
                                             </a>
                                         </td>
                                         <td >
                                             <a class="clear" href="#">
                                                 <strong >寻导游次数</strong>
-                                                <span class="h3 block m-t-xs"><strong>54242</strong></span>
+                                                <span class="h3 block m-t-xs"><strong>${xunGuideCnt}</strong></span>
                                             </a>
                                         </td>
                                         <td >
                                             <a class="clear" href="#">
                                                 <strong >寻导游用户</strong>
-                                                <span class="h3 block m-t-xs"><strong>5422</strong></span>
+                                                <span class="h3 block m-t-xs"><strong>${xunGudieUserCnt}</strong></span>
                                             </a>
                                         </td>
                                     </tr>

@@ -34,10 +34,11 @@ public class PublicController {
 //        return "ting";
 //    }
 
-    @RequestMapping(value = "/xun")
-    public String getItripxun() {
-        return "xun";
-    }
+
+//    @RequestMapping(value = "/xun")
+//    public String getItripxun() {
+//        return "xun";
+//    }
 
     @RequestMapping(value = "/cang")
     public String getItripcang() {

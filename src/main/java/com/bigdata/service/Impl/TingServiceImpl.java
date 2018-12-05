@@ -1,13 +1,7 @@
 package com.bigdata.service.Impl;
 
-import com.bigdata.dao.TingCityDao;
-import com.bigdata.dao.TingDao;
-import com.bigdata.dao.TingGenderDao;
-import com.bigdata.dao.TingSightDao;
-import com.bigdata.entity.Ting;
-import com.bigdata.entity.TingCity;
-import com.bigdata.entity.TingGender;
-import com.bigdata.entity.TingSight;
+import com.bigdata.dao.*;
+import com.bigdata.entity.*;
 import com.bigdata.service.TingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +22,9 @@ public class TingServiceImpl implements TingService {
 
     @Autowired
     private TingSightDao tingSightDao;
+
+    @Autowired
+    private TingChannelDao tingChannelDao;
 
     public BigInteger getPlayTotalCount() {
         return tingDao.getPlayTotalCount();
@@ -62,6 +59,10 @@ public class TingServiceImpl implements TingService {
 
     public List<TingSight> getSightInfo() {
         return tingSightDao.getSightInfo();
+    }
+
+    public List<TingChannel> getChannelInfo() {
+        return tingChannelDao.getChannelInfo();
     }
 
 

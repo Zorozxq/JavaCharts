@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bigdata.dao.XunTreasureTypeDao">
+    <resultMap id="BaseResultMap" type="com.bigdata.entity.XunTreasureType">
+        <id column="xun_treasure_type_id" jdbcType="INTEGER" property="xunTreasureTypeId" />
+        <result column="xun_treasure_cnt" jdbcType="INTEGER" property="xunTreasureCnt" />
+        <result column="xun_treasure_user_cnt" jdbcType="INTEGER" property="xunTreasureUserCnt" />
+        <result column="xun_point_cnt" jdbcType="INTEGER" property="xunPointCnt" />
+        <result column="xun_money_cnt" jdbcType="DOUBLE" property="xunMoneyCnt" />
+        <result column="treasure_type" jdbcType="VARCHAR" property="treasureType" />
+    </resultMap>
+
+
+    <select id="getTreasureTypeInfo" resultMap="BaseResultMap" resultType="com.bigdata.entity.XunTreasureType">
+        SELECT * FROM dw_xun_treasure_type
+    </select>
+</mapper>

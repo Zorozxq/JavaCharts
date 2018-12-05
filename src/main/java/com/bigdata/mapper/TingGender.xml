@@ -9,7 +9,7 @@
         <result column="gender" jdbcType="VARCHAR" property="gender" />
         <result column="ting_cnt" jdbcType="INTEGER" property="tingCnt" />
         <result column="ting_user_cnt" jdbcType="INTEGER" property="tingUserCnt" />
-        <result column="ds" jdbcType="VARCHAR" property="date" />
+        <result column="ds" jdbcType="DATE" property="date" />
     </resultMap>
 
     <select id="getGenderInfo" resultMap="BaseResultMap" resultType="com.bigdata.entity.TingGender">

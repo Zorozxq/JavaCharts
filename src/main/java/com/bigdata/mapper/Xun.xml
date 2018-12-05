@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bigdata.dao.XunDao">
+    <resultMap id="BaseResultMap" type="com.bigdata.entity.Xun">
+        <id column="xun_id" jdbcType="INTEGER" property="xunId" />
+        <result column="xun_treasure_cnt" jdbcType="INTEGER" property="xunTreasureCnt" />
+        <result column="xun_treasure_user_cnt" jdbcType="INTEGER" property="xunTreasureUserCnt" />
+        <result column="xun_point_cnt" jdbcType="INTEGER" property="xunPointCnt" />
+        <result column="xun_money_cnt" jdbcType="DOUBLE" property="xunMoneyCnt" />
+        <result column="xun_guide_cnt" jdbcType="INTEGER" property="xunGuideCnt" />
+        <result column="xun_gudie_user_cnt" jdbcType="INTEGER" property="xunGudieUserCnt" />
+        <result column="ds" jdbcType="DATE" property="date" />
+    </resultMap>
+
+    <select id="getTreasureCount" resultType="Integer">
+        SELECT sum(dw_xun.xun_treasure_cnt) FROM dw_xun
+    </select>
+
+    <select id="getTreasureUserCount" resultType="Integer">
+        SELECT sum(dw_xun.xun_treasure_user_cnt) FROM dw_xun
+    </select>
+
+    <select id="getPointCount" resultType="Integer">
+        SELECT sum(dw_xun.xun_point_cnt) FROM dw_xun
+    </select>
+
+
+    <select id="getMoneyCount" resultType="Double">
+        SELECT sum(dw_xun.xun_money_cnt) FROM dw_xun
+    </select>
+
+    <select id="getGuideCount" resultType="Integer">
+        SELECT sum(dw_xun.xun_guide_cnt) FROM dw_xun
+    </select>
+
+    <select id="getGuideUserCount" resultType="Integer">
+        SELECT sum(dw_xun.xun_gudie_user_cnt) FROM dw_xun
+    </select>
+
+    <select id="selectAll" resultMap="BaseResultMap" resultType="com.bigdata.entity.Xun">
+        SELECT * FROM dw_xun
+    </select>
+</mapper>
