@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bigdata.dao.CangTreasureTypePmDao">
+    <resultMap id="BaseResultMap" type="com.bigdata.entity.CangTreasureTypePm">
+        <id column="cang_treasure_type_pm_id" jdbcType="INTEGER" property="cangTreasureTypePmId" />
+        <result column="cang_point_cnt" jdbcType="INTEGER" property="cangPointCnt" />
+        <result column="cang_money_cnt" jdbcType="DOUBLE" property="cangMoneyCnt" />
+        <result column="treasure_type" jdbcType="VARCHAR" property="treasureType" />
+    </resultMap>
+
+    <select id="getTreasureTypePmInfo" resultMap="BaseResultMap" resultType="com.bigdata.entity.CangTreasureTypePm">
+        SELECT * FROM dw_cang_treasure_type_pm
+    </select>
+
+
+</mapper>

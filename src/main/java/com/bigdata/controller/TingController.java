@@ -46,6 +46,7 @@ public class TingController {
 
     /**
      * 听：总变化图
+     * 只显示最近7天的数据
      * @return
      */
     @RequestMapping(value = "/totalInfo")

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bigdata.dao.CangDao">
+    <resultMap id="BaseResultMap" type="com.bigdata.entity.Cang">
+        <id column="cang_id" jdbcType="INTEGER" property="cangId" />
+        <result column="cang_treasure_cnt" jdbcType="INTEGER" property="cangTreasureCnt" />
+        <result column="cang_treasure_user_cnt" jdbcType="INTEGER" property="cangTreasureUserCnt" />
+        <result column="cang_point_cnt" jdbcType="INTEGER" property="cangPointCnt" />
+        <result column="cang_money_cnt" jdbcType="DOUBLE" property="cangMoneyCnt" />
+        <result column="ds" jdbcType="DATE" property="date" />
+    </resultMap>
+
+
+    <select id="getTreasureCount" resultType="Integer">
+        SELECT sum(dw_cang.cang_treasure_cnt) FROM dw_cang
+    </select>
+
+    <select id="getTreasureUserCount" resultType="Integer">
+        SELECT sum(dw_cang.cang_treasure_user_cnt) FROM dw_cang
+    </select>
+
+    <select id="getTreasurePointCount" resultType="Integer">
+        SELECT sum(dw_cang.cang_point_cnt) FROM dw_cang
+    </select>
+
+    <select id="getTreasureMoneyCount" resultType="Double">
+        SELECT sum(dw_cang.cang_money_cnt) FROM dw_cang
+    </select>
+
+
+    <select id="selectAll" resultMap="BaseResultMap" resultType="com.bigdata.entity.Cang">
+        SELECT * FROM dw_cang WHERE DATE_SUB(CURDATE(), INTERVAL 7 DAY) &lt;= ds
+    </select>
+
+
+</mapper>

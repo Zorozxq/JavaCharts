@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bigdata.dao.CangCityDao">
+    <resultMap id="BaseResultMap" type="com.bigdata.entity.CangCity">
+        <id column="cang_city_id" jdbcType="INTEGER" property="cangCityId" />
+        <result column="cang_treasure_cnt" jdbcType="INTEGER" property="cangTreasureCnt" />
+        <result column="cang_treasure_user_cnt" jdbcType="INTEGER" property="cangTreasureUserCnt" />
+        <result column="cang_point_cnt" jdbcType="INTEGER" property="cangPointCnt" />
+        <result column="cang_money_cnt" jdbcType="DOUBLE" property="cangMoneyCnt" />
+        <result column="city" jdbcType="VARCHAR" property="city" />
+    </resultMap>
+
+
+
+    <select id="getCityInfo" resultMap="BaseResultMap" resultType="com.bigdata.entity.CangCity">
+        SELECT * FROM dw_cang_city
+    </select>
+
+
+</mapper>

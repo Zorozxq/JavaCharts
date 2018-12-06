@@ -41,6 +41,6 @@
     </select>
 
     <select id="selectAll" resultMap="BaseResultMap" resultType="com.bigdata.entity.Xun">
-        SELECT * FROM dw_xun
+        SELECT * FROM dw_xun WHERE DATE_SUB(CURDATE(), INTERVAL 7 DAY) &lt;= ds
     </select>
 </mapper>

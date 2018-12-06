@@ -40,10 +40,10 @@ public class PublicController {
 //        return "xun";
 //    }
 
-    @RequestMapping(value = "/cang")
-    public String getItripcang() {
-        return "cang";
-    }
+//    @RequestMapping(value = "/cang")
+//    public String getItripcang() {
+//        return "cang";
+//    }
 
     @RequestMapping(value = "/liu")
     public String getItripliu() {
