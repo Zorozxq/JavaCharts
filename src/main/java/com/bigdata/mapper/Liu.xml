@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bigdata.dao.LiuDao">
+    <resultMap id="BaseResultMap" type="com.bigdata.entity.Liu">
+        <id column="liu_id" jdbcType="INTEGER" property="liuId" />
+        <result column="liu_cnt" jdbcType="INTEGER" property="liuCnt" />
+        <result column="liu_user_cnt" jdbcType="INTEGER" property="liuUserCnt" />
+        <result column="avg_duration" jdbcType="DOUBLE" property="avgDuration" />
+        <result column="max_duration" jdbcType="DOUBLE" property="maxDuration" />
+        <result column="ds" jdbcType="DATE" property="date" />
+    </resultMap>
+
+
+    <select id="getLiuTotalCount" resultType="Integer">
+        SELECT sum(dw_liu.liu_cnt) FROM dw_liu
+    </select>
+
+    <select id="getLiuUserCount" resultType="Integer">
+        SELECT sum(dw_liu.liu_user_cnt) FROM dw_liu
+    </select>
+
+    <select id="getAvgDuration" resultType="DOUBLE">
+        SELECT avg(dw_liu.avg_duration) FROM dw_liu
+    </select>
+
+    <select id="getMaxDuration" resultType="Double">
+        SELECT avg(dw_liu.max_duration) FROM dw_liu
+    </select>
+
+    <select id="getTotalInfo" resultMap="BaseResultMap" resultType="com.bigdata.entity.Liu">
+        SELECT * FROM dw_liu WHERE DATE_SUB(CURDATE(), INTERVAL 7 DAY) &lt;= ds
+    </select>
+
+
+</mapper>

@@ -45,10 +45,10 @@ public class PublicController {
 //        return "cang";
 //    }
 
-    @RequestMapping(value = "/liu")
-    public String getItripliu() {
-        return "liu";
-    }
+//    @RequestMapping(value = "/liu")
+//    public String getItripliu() {
+//        return "liu";
+//    }
 
     @RequestMapping(value = "/analyze")
     public String getItripanalyze() {

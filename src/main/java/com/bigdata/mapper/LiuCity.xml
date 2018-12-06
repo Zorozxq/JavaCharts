@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bigdata.dao.LiuCityDao">
+    <resultMap id="BaseResultMap" type="com.bigdata.entity.LiuCity">
+        <id column="liu_city_id" jdbcType="INTEGER" property="liuCityId" />
+        <result column="liu_cnt" jdbcType="INTEGER" property="liuCnt" />
+        <result column="liu_user_cnt" jdbcType="INTEGER" property="liuUserCnt" />
+        <result column="city" jdbcType="VARCHAR" property="city" />
+    </resultMap>
+
+    <select id="getCityInfo" resultMap="BaseResultMap" resultType="com.bigdata.entity.LiuCity">
+    select * from dw_liu_city
+    </select>
+
+</mapper>

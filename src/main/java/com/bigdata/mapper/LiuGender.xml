@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bigdata.dao.LiuGenderDao">
+    <resultMap id="BaseResultMap" type="com.bigdata.entity.LiuGender">
+        <id column="liu_gender_id" jdbcType="INTEGER" property="liuGenderId" />
+        <result column="gender" jdbcType="VARCHAR" property="gender" />
+        <result column="liu_cnt" jdbcType="INTEGER" property="liuCnt" />
+        <result column="liu_user_cnt" jdbcType="INTEGER" property="liuUserCnt" />
+        <result column="ds" jdbcType="DATE" property="date" />
+    </resultMap>
+
+    <select id="getGenderInfo" resultMap="BaseResultMap" resultType="com.bigdata.entity.LiuGender">
+     SELECT `liu_gender_id`,gender,liu_cnt,liu_g1.ds AS ds,g.avg_liu_cnt
+      FROM dw_liu_gender_cnt liu_g1
+      JOIN
+       (SELECT AVG(liu_g.liu_cnt) AS avg_liu_cnt,liu_g.ds AS ds1 FROM dw_liu_gender_cnt liu_g GROUP BY liu_g.ds)g
+      ON ds=ds1
+
+    </select>
+
+</mapper>

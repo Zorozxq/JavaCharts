@@ -78,25 +78,25 @@
                                 <div class="col-sm-6 col-md-3 padder-v b-r b-light"><span class="fa-stack fa-2x pull-left m-r-sm"><i class="fa fa-circle fa-stack-2x text-info"></i><i class="fa fa-male fa-stack-1x text-white"></i></span>
                                     <a class="clear" href="#">
                                         <strong >留总次数</strong>
-                                        <span class="h3 block m-t-xs"><strong>540342</strong></span>
+                                        <span class="h3 block m-t-xs"><strong>${liuTotalCount}</strong></span>
                                     </a>
                                 </div>
                                 <div class="col-sm-6 col-md-3 padder-v b-r b-light lt"><span class="fa-stack fa-2x pull-left m-r-sm"><i class="fa fa-circle fa-stack-2x text-warning"></i><i class="fa fa-bug fa-stack-1x text-white"></i><span class="easypiechart pos-abt" data-percent="100" data-line-width="4" data-track-Color="#fff" data-scale-Color="false" data-size="50" data-line-cap='butt' data-animate="2000" data-target="#bugs" data-update="3000"></span></span>
                                     <a class="clear" href="#">
                                         <strong >留用户数</strong>
-                                        <span class="h3 block m-t-xs"><strong >46823</strong></span>
+                                        <span class="h3 block m-t-xs"><strong >${liuUserCount}</strong></span>
                                     </a>
                                 </div>
                                 <div class="col-sm-6 col-md-3 padder-v b-r b-light"> <span class="fa-stack fa-2x pull-left m-r-sm"><i class="fa fa-circle fa-stack-2x text-danger"></i> <i class="fa fa-fire-extinguisher fa-stack-1x text-white"></i><span class="easypiechart pos-abt" data-percent="100" data-line-width="4" data-track-Color="#f5f5f5" data-scale-Color="false" data-size="50" data-line-cap='butt' data-animate="3000" data-target="#firers" data-update="5000"></span> </span>
                                     <a class="clear" href="#">
                                         <strong >平均语音时长</strong>
-                                        <span class="h3 block m-t-xs"><strong >23 S</strong></span>
+                                        <span class="h3 block m-t-xs"><strong >${avgDuration} S</strong></span>
                                     </a>
                                 </div>
                                 <div class="col-sm-6 col-md-3 padder-v b-r b-light lt"> <span class="fa-stack fa-2x pull-left m-r-sm"><i class="fa fa-circle fa-stack-2x icon-muted"></i><i class="fa fa-clock-o fa-stack-1x text-white"></i></span>
                                     <a class="clear" href="#">
                                         <strong >平均播放时长</strong>
-                                        <span class="h3 block m-t-xs"><strong >15 S</strong></span>
+                                        <span class="h3 block m-t-xs"><strong >${maxDuration} S</strong></span>
                                     </a>
                                 </div>
                             </div>
