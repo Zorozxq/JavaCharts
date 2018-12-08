@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bigdata.dao.AnalyzeDao">
+    <resultMap id="BaseResultMap" type="com.bigdata.entity.Analyze">
+        <id column="analyze_id" jdbcType="INTEGER" property="id" />
+        <result column="recharge_cnt" jdbcType="DOUBLE" property="rechargeCnt" />
+        <result column="withdraw_cnt" jdbcType="DOUBLE" property="withdrawCnt" />
+        <result column="total_point" jdbcType="INTEGER" property="totalPoint" />
+        <result column="user_money" jdbcType="DOUBLE" property="userMoney" />
+        <result column="ds" jdbcType="DATE" property="date" />
+    </resultMap>
+
+
+    <select id="getRechargeCount" resultType="DOUBLE">
+        SELECT sum(dw_analyze.recharge_cnt) FROM dw_analyze
+    </select>
+
+    <select id="getWithdrawCount" resultType="DOUBLE">
+        SELECT sum(dw_analyze.withdraw_cnt) FROM dw_analyze
+    </select>
+
+    <select id="getTotalPointCount" resultType="INTEGER">
+        SELECT sum(dw_analyze.total_point) FROM dw_analyze
+    </select>
+
+    <select id="getUserMoneyCount" resultType="DOUBLE">
+        SELECT sum(dw_analyze.user_money) FROM dw_analyze
+    </select>
+
+    <select id="getAllInfo" resultMap="BaseResultMap" resultType="com.bigdata.entity.Analyze">
+        SELECT * FROM dw_analyze WHERE DATE_SUB(CURDATE(), INTERVAL 7 DAY) &lt;= ds
+    </select>
+
+    <select id="getMonthAllInfo" resultType="com.bigdata.entity.AnalyzeMonth">
+        SELECT
+               sum(recharge_cnt) AS month_recharge_cnt,
+               sum(withdraw_cnt) AS month_withdraw_cnt,
+               sum(total_point) AS month_total_point,
+               sum(user_money) AS month_user_money,
+               MONTH(ds) as monthId
+          FROM dw_analyze WHERE YEAR(ds) = '2018'
+          GROUP BY MONTH(ds)
+
+    </select>
+
+
+</mapper>

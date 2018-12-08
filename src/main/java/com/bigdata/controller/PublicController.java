@@ -50,10 +50,10 @@ public class PublicController {
 //        return "liu";
 //    }
 
-    @RequestMapping(value = "/analyze")
-    public String getItripanalyze() {
-        return "analyze";
-    }
+//    @RequestMapping(value = "/analyze")
+//    public String getItripanalyze() {
+//        return "analyze";
+//    }
 
     @RequestMapping(value = "/hello2")
     @ResponseBody
