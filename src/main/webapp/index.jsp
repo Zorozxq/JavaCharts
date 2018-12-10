@@ -14,6 +14,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <link rel="stylesheet" href="css/app.v2.css" type="text/css" />
     <link rel="stylesheet" href="js\calendar/bootstrap_calendar.css" type="text/css" cache="false" />
+
+    <style>
+        table td {
+            border:1px solid #989898;
+        }
+
+        thead tr td {
+            background-color: #E6E4E4;
+        }
+
+    </style>
     <!--[if lt IE 9]> <script src="js/ie/html5shiv.js" cache="false"></script> <script src="js/ie/respond.min.js" cache="false"></script> <script src="js/ie/excanvas.js" cache="false"></script> <![endif]-->
 </head>
 <body>
@@ -44,12 +55,12 @@
                         <div class="slim-scroll" data-height="auto" data-disable-fade-out="true" data-distance="0" data-size="5px" data-color="#333333"> <!-- nav -->
                             <nav class="nav-primary hidden-xs">
                                 <ul class="nav">
-                                    <li class="active"> <a href="/index" class="active"> <i class="fa fa-dashboard icon"> <b class="bg-danger"></b> </i> <span>首页</span> </a> </li>
-                                    <li > <a href="/ting" class="active"> <i class="fa fa-columns icon"> <b class="bg-warning"></b> </i> <span>听</span> </a> </li>
-                                    <li > <a href="/xun" class="active"> <i class="fa fa-flask icon"> <b class="bg-success"></b> </i> <span>寻</span> </a> </li>
-                                    <li > <a href="/cang" class="active"> <i class="fa fa-file-text icon"> <b class="bg-primary"></b> </i> <span>藏</span> </a> </li>
-                                    <li > <a href="/liu" class="active"> <i class="fa fa-envelope-o icon"> <b class="bg-primary dker"></b> </i> <span>留</span> </a> </li>
-                                    <li > <a href="/analyze" > <i class="fa fa-pencil icon"> <b class="bg-info"></b> </i> <span>用户分析</span> </a> </li>
+                                    <li class="active"> <a href="index.html" class="active"> <i class="fa fa-dashboard icon"> <b class="bg-danger"></b> </i> <span>首页</span> </a> </li>
+                                    <li > <a href="ting.html" class="active"> <i class="fa fa-columns icon"> <b class="bg-warning"></b> </i> <span>听</span> </a> </li>
+                                    <li > <a href="xun.html" class="active"> <i class="fa fa-flask icon"> <b class="bg-success"></b> </i> <span>寻</span> </a> </li>
+                                    <li > <a href="cang.html" class="active"> <i class="fa fa-file-text icon"> <b class="bg-primary"></b> </i> <span>藏</span> </a> </li>
+                                    <li > <a href="liu.html" class="active"> <i class="fa fa-envelope-o icon"> <b class="bg-primary dker"></b> </i> <span>留</span> </a> </li>
+                                    <li > <a href="analyze.html" > <i class="fa fa-pencil icon"> <b class="bg-info"></b> </i> <span>用户分析</span> </a> </li>
                                 </ul>
                             </nav>
                         </div>
@@ -69,6 +80,12 @@
                             <li><a href="index.html"><i class="fa fa-home"></i> Home</a></li>
                             <li class="active">首页</li>
                         </ul>
+                        <div style="width:300px ;" class="input-group search datagrid-search">
+                            <input type="text" class="input-sm form-control" placeholder="Search">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default btn-sm"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
                         <div class="m-b-md">
                             <h3 class="m-b-none">事实表详情 </h3>
                             <table style="border:1px solid black;width:90%;">

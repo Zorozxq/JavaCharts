@@ -50,7 +50,8 @@ public class TingServiceImpl implements TingService {
     }
 
     public List<Ting> getTotalInfo() {
-        return tingDao.selectAll();
+        List<Ting> tings = tingDao.selectAll();
+        return tings;
     }
 
     public List<TingGender> getGenderInfo() {

@@ -1,5 +1,7 @@
 package com.bigdata.controller;
 
+import cn.hutool.core.date.DateUnit;
+import cn.hutool.core.date.DateUtil;
 import com.bigdata.dao.TingCityDao;
 import com.bigdata.dao.TingDao;
 import com.bigdata.dao.TingGenderDao;
@@ -12,9 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import java.math.BigInteger;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("/ting")
@@ -26,8 +26,6 @@ public class TingController {
     @Autowired
     private TingGenderDao tingGenderDao;
 
-
-    @ResponseBody
     @RequestMapping
     public ModelAndView playTotalCount() {
         ModelMap params = new ModelMap();
@@ -51,9 +49,23 @@ public class TingController {
      */
     @RequestMapping(value = "/totalInfo")
     @ResponseBody
-    public List<Ting> getTotalInfo() {
+    public List<List<String>> getTotalInfo() {
         List<Ting> totalInfo = tingService.getTotalInfo();
-        return totalInfo;
+        List<List<String>> result = new ArrayList<>();
+        List<String> timeList = new ArrayList<>();
+        List<String> userCountList = new ArrayList<>();
+        List<String> playCountList = new ArrayList<>();
+        for (Ting info : totalInfo) {
+            timeList.add(DateUtil.formatDate(info.getDate()));
+            userCountList.add(info.getUserTotalCount().toString());
+            playCountList.add(info.getPlayTotalCount().toString());
+        }
+
+        result.add(timeList);
+        result.add(userCountList);
+        result.add(playCountList);
+
+        return result;
     }
 
 
@@ -64,9 +76,40 @@ public class TingController {
 
     @RequestMapping(value = "/genderInfo")
     @ResponseBody
-    public List<TingGender> getGenderInfo() {
+    public List<List<String>> getGenderInfo() {
         List<TingGender> genderInfo = tingService.getGenderInfo();
-        return genderInfo;
+        List<List<String>> result = new ArrayList<>();
+        List<String> timeList = new ArrayList<>();
+        Set<String> ds = new HashSet<>();
+        List<String> manCountList = new ArrayList<>();
+        List<String> womanCountList = new ArrayList<>();
+        List<String> avgCountList = new ArrayList<>();
+
+        for (TingGender info : genderInfo) {
+           if(!ds.contains(info.getDate().toString())){
+               ds.add(info.getDate().toString());
+               timeList.add(DateUtil.formatDate(info.getDate()));
+               avgCountList.add(info.getAvgTingCnt().toString());
+           }
+            if(info.getGender().equals("男")){
+                manCountList.add(info.getTingCnt().toString());
+            }
+
+            if(info.getGender().equals("女")){
+                womanCountList.add(info.getTingCnt().toString());
+            }
+
+        }
+
+        result.add(timeList);
+        result.add(manCountList);
+        result.add(womanCountList);
+        result.add(avgCountList);
+
+        return result;
+
+
+        //return genderInfo;
     }
 
 

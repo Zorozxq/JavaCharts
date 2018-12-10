@@ -9,5 +9,8 @@
         <module name="JavaCharts" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="JavaCharts" target="8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

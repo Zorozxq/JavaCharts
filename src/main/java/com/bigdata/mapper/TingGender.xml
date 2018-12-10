@@ -18,6 +18,7 @@
       JOIN
        (SELECT AVG(ting_g.ting_cnt) AS avg_ting_cnt,ting_g.ds AS ds1 FROM dw_ting_gender_cnt ting_g GROUP BY ting_g.ds)g
       ON ds=ds1
+      ORDER  by ting_g1.ds
 
     </select>
 

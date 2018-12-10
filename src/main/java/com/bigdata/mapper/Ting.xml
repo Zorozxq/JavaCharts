@@ -30,7 +30,7 @@
     </select>
 
     <select id="selectAll" resultMap="BaseResultMap" resultType="com.bigdata.entity.Ting">
-        SELECT * FROM dw_ting WHERE DATE_SUB(CURDATE(), INTERVAL 7 DAY) &lt;= ds
+        SELECT * FROM dw_ting WHERE DATE_SUB(CURDATE(), INTERVAL 7 DAY) &lt;= ds ORDER BY ds
     </select>
 
 </mapper>

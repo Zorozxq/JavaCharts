@@ -155,10 +155,23 @@
             <artifactId>mybatis-generator-core</artifactId>
             <version>1.3.6</version>
         </dependency>
-
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>4.3.0</version>
+        </dependency>
     </dependencies>
     <build>
         <finalName>JavaCharts</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
         <plugins>
         <plugin>
             <!--Mybatis-generator插件,用于自动生成Mapper和POJO-->

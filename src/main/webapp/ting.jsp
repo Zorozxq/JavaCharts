@@ -149,7 +149,32 @@
 </section>
 <script src="js/app.v2.js"></script><script src="js/echarts.min.js"></script> <!-- Bootstrap --> <!-- App --> <script src="js/charts/easypiechart/jquery.easy-pie-chart.js" cache="false"></script> <script src="js/charts/sparkline/jquery.sparkline.min.js" cache="false"></script> <script src="js/charts/flot/jquery.flot.min.js" cache="false"></script> <script src="js/charts/flot/jquery.flot.tooltip.min.js" cache="false"></script> <script src="js/charts/flot/jquery.flot.resize.js" cache="false"></script> <script src="js/charts/flot/jquery.flot.grow.js" cache="false"></script> <script src="js/charts/flot/demo.js" cache="false"></script> <script src="js/calendar/bootstrap_calendar.js" cache="false"></script> <script src="js/calendar/demo.js" cache="false"></script> <script src="js/sortable/jquery.sortable.js" cache="false"></script>
 <script>
+    var totalUserCount_gp1;
+    var totalPlayCount_gp1;
+    var totalUserCount2_gp1 = new Array();
+    var totalPlayCount2_gp1 = new Array();
+    var time_gp1 = new Array();
+    var time2_gp1 = new Array();
+    // 总体图
+    $.ajax({
+        type:"post",
+        url:"/ting/totalInfo",
+        dataType:"json",
+        success: function (data) {
+            time_gp1 = data[0];
+            totalUserCount_gp1 = data[1];
+            totalPlayCount_gp1 = data[2];
 
+            for (var i = 0; i < totalPlayCount_gp1.length; i++) {
+                time2_gp1[i] = time_gp1[i].toString();
+                totalPlayCount2_gp1[i] = parseInt(totalPlayCount_gp1[i]);
+                totalUserCount2_gp1[i] = parseInt(totalUserCount_gp1[i]);
+            }
+
+            var myChart = echarts.init(document.getElementById('graph1'));
+            myChart.setOption(option1);
+        }
+    });
     option1 = {
         title: {
             text: '总变化图'
@@ -178,15 +203,15 @@
         },
         grid: {
             left: '3%',
-            right: '4%',
-            bottom: '3%',
+            right: '10%',
+            bottom: '5%',
             containLabel: true
         },
         xAxis : [
             {
                 type : 'category',
-                boundaryGap : false,
-                data : ['1日','2日','3日','4日','5日','6日','7日']
+                data : time2_gp1,
+                boundaryGap : false
             }
         ],
         yAxis : [
@@ -200,7 +225,7 @@
                 type:'line',
                 stack: '总量',
                 areaStyle: {},
-                data:[150, 232, 201, 154, 190, 330, 410]
+                data:totalUserCount2_gp1
             },
 
             {
@@ -214,14 +239,40 @@
                     }
                 },
                 areaStyle: {normal: {}},
-                data:[820, 932, 901, 934, 1290, 1330, 1320]
+                data:totalPlayCount2_gp1
             }
         ]
     };
 
-    var myChart = echarts.init(document.getElementById('graph1'));
-    myChart.setOption(option1);
+    var manCountList_gp2;
+    var womanCountList_gp2;
+    var avgCountList_gp2 = new Array();
+    var time_gp2 = new Array();
+    var manCountList2_gp2 = new Array();
+    var womanCountList2_gp2 = new Array();
+    var avgCountList2_gp2 = new Array();
+    var time2_gp2 = new Array();
+    $.ajax({
+        type:"post",
+        url:"/ting/genderInfo",
+        dataType:"json",
+        success: function (data) {
+            time_gp2 = data[0];
+            manCountList_gp2 = data[1];
+            womanCountList_gp2 = data[2];
+            avgavgCountList_gp2 = data[3];
 
+            for (var i = 0; i < time_gp2.length; i++) {
+                time2_gp2[i] = time_gp2[i].toString();
+                manCountList2_gp2[i] = parseInt(manCountList_gp2[i]);
+                womanCountList2_gp2[i] = parseInt(womanCountList_gp2[i]);
+                avgCountList2_gp2[i] = parseInt(avgCountList_gp2)
+            }
+
+            var myChart = echarts.init(document.getElementById('graph2'));
+            myChart.setOption(option2);
+        }
+    });
     option2 = {
         title: {
             "text": "性别统计图"
@@ -247,14 +298,14 @@
             data:['男','女','平均数']
         },
         grid: {
-            left: '3%',   //距离左边的距离
+            left: '10%',   //距离左边的距离
             right: '6%', //距离右边的距离
             bottom: '5%',//距离下边的距离
         },
         xAxis: [
             {
                 type: 'category',
-                data: ['1日','2日','3日','4日','5日','6日','7日','8日','9日','10日','11日','12日'],
+                data: time2_gp2,
                 axisPointer: {
                     type: 'shadow'
                 }
@@ -262,48 +313,32 @@
         ],
         yAxis: [
             {
-                type: 'value',
-                name: '数据',
-                min: 0,
-                max: 250,
-                interval: 50,
-                axisLabel: {
-                    formatter: '{value} ml'
-                }
+                type: 'value'
+
             },
             {
-                type: 'value',
-                name: '温度',
-                min: 0,
-                max: 25,
-                interval: 5,
-                axisLabel: {
-                    formatter: '{value} °C'
-                }
+                type: 'value'
             }
         ],
         series: [
             {
                 name:'男',
                 type:'bar',
-                data:[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
+                data:manCountList2_gp2
             },
             {
                 name:'女',
                 type:'bar',
-                data:[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]
+                data:womanCountList2_gp2
             },
             {
                 name:'平均数',
                 type:'line',
                 yAxisIndex: 1,
-                data:[2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
+                data:avgCountList2_gp2
             }
         ]
     };
-
-    var myChart = echarts.init(document.getElementById('graph2'));
-    myChart.setOption(option2);
 
 
     option3 = {
