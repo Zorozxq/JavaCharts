@@ -26,6 +26,7 @@ public class TingController {
     @Autowired
     private TingGenderDao tingGenderDao;
 
+    @ResponseBody
     @RequestMapping
     public ModelAndView playTotalCount() {
         ModelMap params = new ModelMap();
@@ -55,18 +56,30 @@ public class TingController {
         List<String> timeList = new ArrayList<>();
         List<String> userCountList = new ArrayList<>();
         List<String> playCountList = new ArrayList<>();
+        List<String> avgDuration = new ArrayList<>();
+        List<String> maxDuration = new ArrayList<>();
+
         for (Ting info : totalInfo) {
             timeList.add(DateUtil.formatDate(info.getDate()));
             userCountList.add(info.getUserTotalCount().toString());
             playCountList.add(info.getPlayTotalCount().toString());
+            avgDuration.add(info.getAveragePlayTime().toString());
+            maxDuration.add(info.getMaxPlayTime().toString());
+
         }
 
         result.add(timeList);
         result.add(userCountList);
         result.add(playCountList);
+        result.add(avgDuration);
+        result.add(maxDuration);
 
         return result;
     }
+//    public List<Ting> getTotalInfo() {
+//        List<Ting> totalInfo = tingService.getTotalInfo();
+//        return totalInfo;
+//    }
 
 
     /**
@@ -119,10 +132,24 @@ public class TingController {
      */
     @RequestMapping(value = "/cityInfo")
     @ResponseBody
-    public List<TingCity> getCityInfo() {
-        List<TingCity> cityInfo = tingService.getCityInfo();
-        return cityInfo;
+    public List<List<String>> getCityInfo(){
+        List<TingCity> totalInfo = tingService.getCityInfo();
+        List<List<String>> result = new ArrayList<>();
+        List<String> cityName = new ArrayList<>();
+        List<String> tingCnt = new ArrayList<>();
+        for (TingCity tingCity : totalInfo) {
+            cityName.add(tingCity.getCityName());
+            tingCnt.add(tingCity.getCityplayCount().toString());
+        }
+        result.add(cityName);
+        result.add(tingCnt);
+        return result;
+
     }
+//    public List<TingCity> getCityInfo() {
+//        List<TingCity> cityInfo = tingService.getCityInfo();
+//        return cityInfo;
+//    }
 
     /**
      * 听：景点类别统计
@@ -130,10 +157,24 @@ public class TingController {
      */
     @RequestMapping(value = "/sightInfo")
     @ResponseBody
-    public List<TingSight> getSightInfo() {
+    public List<List<String>> getSightInfo(){
         List<TingSight> sightInfo = tingService.getSightInfo();
-        return sightInfo;
+        List<List<String>> result = new ArrayList<>();
+        List<String> sightName = new ArrayList<>();
+        List<String> tingCnt = new ArrayList<>();
+        for (TingSight tingSight : sightInfo) {
+            sightName.add(tingSight.getSightName());
+            tingCnt.add(tingSight.getTingCnt().toString());
+        }
+        result.add(sightName);
+        result.add(tingCnt);
+        return result;
+
     }
+//    public List<TingSight> getSightInfo() {
+//        List<TingSight> sightInfo = tingService.getSightInfo();
+//        return sightInfo;
+//    }
 
     /**
      * 听：播放最多语音统计
@@ -141,21 +182,30 @@ public class TingController {
      */
     @RequestMapping(value = "/ChannelInfo")
     @ResponseBody
-    public List<TingChannel> getChannelInfo() {
+    public List<List<String>> getChannelInfo() {
         List<TingChannel> channelInfo = tingService.getChannelInfo();
-        return channelInfo;
+        List<List<String>> result = new ArrayList<>();
+        List<String> channelName = new ArrayList<>();
+        List<String> tingCnt = new ArrayList<>();
+        for (TingChannel tingChannel : channelInfo) {
+            channelName.add(tingChannel.getChannel());
+            tingCnt.add(tingChannel.getTingCnt().toString());
+        }
+        result.add(channelName);
+        result.add(tingCnt);
+        return result;
     }
 
 
-
-
-//    @ResponseBody
-//    @RequestMapping
-//    public String ting(Model model) {
-//        int BoFangCount = 3000;
-//        model.addAttribute("playTotalCount", BoFangCount);
-//        return "ting";
+//    public List<TingChannel> getChannelInfo() {
+//        List<TingChannel> channelInfo = tingService.getChannelInfo();
+//        return channelInfo;
 //    }
+
+
+
+
+
 
 
 }

@@ -1,5 +1,6 @@
 package com.bigdata.controller;
 
+import cn.hutool.core.date.DateUtil;
 import com.bigdata.dao.CangCityDao;
 import com.bigdata.dao.CangDao;
 import com.bigdata.dao.CangTreasureTypeDao;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -54,10 +56,36 @@ public class CangController {
      */
     @RequestMapping(value = "/totalInfo")
     @ResponseBody
-    public List<Cang> getTotalInfo() {
+    public List<List<String>> getTotalInfo() {
         List<Cang> totalInfo = cangDao.selectAll();
-        return totalInfo;
+        List<List<String>> result = new ArrayList<>();
+        List<String> timeList = new ArrayList<>();
+        List<String> cangTreasureCntList = new ArrayList<>();
+        List<String> cangTreasureUserCntList = new ArrayList<>();
+        List<String> cangPointList = new ArrayList<>();
+        List<String> cangMoneyList = new ArrayList<>();
+        for (Cang cang : totalInfo) {
+            timeList.add(DateUtil.formatDate(cang.getDate()));
+            cangTreasureCntList.add(cang.getCangTreasureCnt().toString());
+            cangTreasureUserCntList.add(cang.getCangTreasureUserCnt().toString());
+            cangPointList.add(cang.getCangPointCnt().toString());
+            cangMoneyList.add(cang.getCangMoneyCnt().toString());
+        }
+
+        result.add(timeList);
+        result.add(cangTreasureCntList);
+        result.add(cangTreasureUserCntList);
+        result.add(cangPointList);
+        result.add(cangMoneyList);
+
+        return result;
+
+
     }
+//    public List<Cang> getTotalInfo() {
+//        List<Cang> totalInfo = cangDao.selectAll();
+//        return totalInfo;
+//    }
 
 
     /**
@@ -66,10 +94,35 @@ public class CangController {
      */
     @RequestMapping(value = "/cityInfo")
     @ResponseBody
-    public List<CangCity> getCityInfo() {
-        List<CangCity> cityInfo = cangCityDao.getCityInfo();
-        return cityInfo;
+    public List<List<String>> getCityInfo(){
+        List<CangCity> totalInfo = cangCityDao.getCityInfo();
+        List<List<String>> result = new ArrayList<>();
+        List<String> cityName = new ArrayList<>();
+        List<String> cangTreasureCntList = new ArrayList<>();
+        List<String> cangTreasureUserCntList = new ArrayList<>();
+        List<String> cangPointList = new ArrayList<>();
+        List<String> cangMoneyList = new ArrayList<>();
+
+        for (CangCity cangCity : totalInfo) {
+            cityName.add(cangCity.getCity());
+            cangTreasureCntList.add(cangCity.getCangTreasureCnt().toString());
+            cangTreasureUserCntList.add(cangCity.getCangTreasureUserCnt().toString());
+            cangPointList.add(cangCity.getCangPointCnt().toString());
+            cangMoneyList.add(cangCity.getCangMoneyCnt().toString());
+
+        }
+        result.add(cityName);
+        result.add(cangTreasureCntList);
+        result.add(cangTreasureUserCntList);
+        result.add(cangPointList);
+        result.add(cangMoneyList);
+        return result;
+
     }
+//    public List<CangCity> getCityInfo() {
+//        List<CangCity> cityInfo = cangCityDao.getCityInfo();
+//        return cityInfo;
+//    }
 
 
     /**
@@ -77,20 +130,50 @@ public class CangController {
      */
     @RequestMapping(value = "/treasureTypeInfo")
     @ResponseBody
-    public List<CangTreasureType> getTreasureTypeInfo(){
+    public List<List<String>> getTreasureTypeInfo(){
         List<CangTreasureType> treasureTypeInfo = cangTreasureTypeDao.getTreasureTypeInfo();
-        return treasureTypeInfo;
+        List<List<String>> result = new ArrayList<>();
+        List<String> cangTreasureCntList = new ArrayList<>();
+        List<String> cangTreasureTypeList = new ArrayList<>();
+        for (CangTreasureType cangTreasureType : treasureTypeInfo) {
+            cangTreasureTypeList.add(cangTreasureType.getTreasureType());
+            cangTreasureCntList.add(cangTreasureType.getCangTreasureCnt().toString());
+        }
+        result.add(cangTreasureTypeList);
+        result.add(cangTreasureCntList);
+        return result;
     }
+
+//    public List<CangTreasureType> getTreasureTypeInfo(){
+//        List<CangTreasureType> treasureTypeInfo = cangTreasureTypeDao.getTreasureTypeInfo();
+//        return treasureTypeInfo;
+//    }
 
     /**
      * 藏：宝藏类型总数统计
      */
     @RequestMapping(value = "/treasureTypePmInfo")
     @ResponseBody
-    public List<CangTreasureTypePm> getTreasureTypePmInfo(){
+    public List<List<String>> getTreasureTypePmInfo(){
         List<CangTreasureTypePm> treasureTypePmInfo = cangTreasureTypePmDao.getTreasureTypePmInfo();
-        return treasureTypePmInfo;
+        List<List<String>> result = new ArrayList<>();
+        List<String> cangTreasureTypeList = new ArrayList<>();
+        List<String> cangPointList = new ArrayList<>();
+        List<String> cangMoneyList = new ArrayList<>();
+        for (CangTreasureTypePm cangTreasureTypePm : treasureTypePmInfo) {
+            cangTreasureTypeList.add(cangTreasureTypePm.getTreasureType());
+            cangPointList.add(cangTreasureTypePm.getCangPointCnt().toString());
+            cangMoneyList.add(cangTreasureTypePm.getCangMoneyCnt().toString());
+        }
+        result.add(cangTreasureTypeList);
+        result.add(cangPointList);
+        result.add(cangMoneyList);
+        return result;
     }
+//    public List<CangTreasureTypePm> getTreasureTypePmInfo(){
+//        List<CangTreasureTypePm> treasureTypePmInfo = cangTreasureTypePmDao.getTreasureTypePmInfo();
+//        return treasureTypePmInfo;
+//    }
 
 
 

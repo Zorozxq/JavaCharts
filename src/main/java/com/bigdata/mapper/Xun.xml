@@ -40,7 +40,11 @@
         SELECT sum(dw_xun.xun_gudie_user_cnt) FROM dw_xun
     </select>
 
+    <!--<select id="selectAll" resultMap="BaseResultMap" resultType="com.bigdata.entity.Xun">-->
+        <!--SELECT * FROM dw_xun WHERE DATE_SUB(CURDATE(), INTERVAL 7 DAY) &lt;= ds-->
+    <!--</select>-->
+
     <select id="selectAll" resultMap="BaseResultMap" resultType="com.bigdata.entity.Xun">
-        SELECT * FROM dw_xun WHERE DATE_SUB(CURDATE(), INTERVAL 7 DAY) &lt;= ds
+        SELECT * FROM dw_xun
     </select>
 </mapper>

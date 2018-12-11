@@ -13,7 +13,7 @@
     </resultMap>
 
     <select id="getGenderInfo" resultMap="BaseResultMap" resultType="com.bigdata.entity.LiuGender">
-     SELECT `liu_gender_id`,gender,liu_cnt,liu_g1.ds AS ds,g.avg_liu_cnt
+     SELECT liu_gender_id,gender,liu_cnt,liu_g1.ds AS ds,g.avg_liu_cnt
       FROM dw_liu_gender_cnt liu_g1
       JOIN
        (SELECT AVG(liu_g.liu_cnt) AS avg_liu_cnt,liu_g.ds AS ds1 FROM dw_liu_gender_cnt liu_g GROUP BY liu_g.ds)g

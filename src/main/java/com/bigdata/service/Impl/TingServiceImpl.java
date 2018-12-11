@@ -26,6 +26,7 @@ public class TingServiceImpl implements TingService {
     @Autowired
     private TingChannelDao tingChannelDao;
 
+    @Override
     public BigInteger getPlayTotalCount() {
         return tingDao.getPlayTotalCount();
     }

@@ -1,6 +1,7 @@
 package com.bigdata.dao;
 
 import com.bigdata.entity.Analyze;
+import com.bigdata.entity.AnalyzeMonth;
 import com.bigdata.entity.Cang;
 
 import java.util.List;
@@ -39,7 +40,7 @@ public interface AnalyzeDao {
     /**
      * 根据月份统计
      */
-    List<Analyze> getMonthAllInfo();
+    List<AnalyzeMonth> getMonthAllInfo();
 
 
 }

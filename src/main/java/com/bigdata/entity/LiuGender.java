@@ -12,6 +12,17 @@ public class LiuGender {
     private Integer liuUserCnt;  //留用户总数
 
     private Date date;
+    private Double avgLiuCnt;  //平均数
+
+
+    public Double getAvgLiuCnt() {
+        return avgLiuCnt;
+    }
+
+    public void setAvgLiuCnt(Double avgLiuCnt) {
+        this.avgLiuCnt = avgLiuCnt;
+    }
+
 
     public Integer getLiuGenderId() {
         return liuGenderId;
