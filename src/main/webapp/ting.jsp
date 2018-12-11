@@ -125,11 +125,11 @@
                                     </td>
                                 </tr>
                                 <tr valign="bottom">
-                                    <td style="width:50%">
+                                    <td style="width:90%">
                                         <a href="#modal" onclick="show(5)" data-toggle="modal"><i class="fa fa-search-plus"></i></a>
                                         <div id="graph5" style="width: 600px;height:400px;"></div>
                                     </td>
-                                    <td style="width:50%">
+                                    <td style="width:10%">
 
                                     </td>
                                 </tr>
@@ -454,6 +454,27 @@
     myChart.setOption(option4);
 
 
+    var totalPlayCnt_gp5;
+    var totalPlayCnt2_gp5 = new Array();
+    var time_gp5 = new Array();
+    var time2_gp5 = new Array();
+    $.ajax({
+        type:"post",
+        url:"/ting/sightInfo",
+        dataType:"json",
+        success: function (data) {
+            time_gp5 = data[0];
+            totalPlayCnt_gp5 = data[1];
+
+            for (var i = 0; i < time_gp5.length; i++) {
+                time2_gp5[i] = time_gp5[i].toString();
+                totalPlayCnt2_gp5[i] = parseInt(totalPlayCnt_gp5[i]);
+            }
+
+            var myChart = echarts.init(document.getElementById('graph5'));
+            myChart.setOption(option5);
+        }
+    });
 
     option5 = {
         title : {
@@ -484,9 +505,13 @@
         xAxis : [
             {
                 type : 'category',
-                data : ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                data :time2_gp5,
                 axisTick: {
                     alignWithLabel: true
+                },
+                axisLabel: {
+                    interval:0,
+                    rotate:40
                 }
             }
         ],
@@ -500,13 +525,10 @@
                 name:'直接访问',
                 type:'bar',
                 barWidth: '60%',
-                data:[10, 52, 200, 334, 390, 330, 220]
+                data:totalPlayCnt2_gp5
             }
         ]
     };
-
-    var myChart = echarts.init(document.getElementById('graph5'));
-    myChart.setOption(option5);
 
 
     var options = [option1, option2, option3, option4,option5];

@@ -157,6 +157,50 @@
 <script src="js/app.v2.js"></script><script src="js/echarts.min.js"></script> <!-- Bootstrap --> <!-- App --> <script src="js/charts/easypiechart/jquery.easy-pie-chart.js" cache="false"></script> <script src="js/charts/sparkline/jquery.sparkline.min.js" cache="false"></script> <script src="js/charts/flot/jquery.flot.min.js" cache="false"></script> <script src="js/charts/flot/jquery.flot.tooltip.min.js" cache="false"></script> <script src="js/charts/flot/jquery.flot.resize.js" cache="false"></script> <script src="js/charts/flot/jquery.flot.grow.js" cache="false"></script> <script src="js/charts/flot/demo.js" cache="false"></script> <script src="js/calendar/bootstrap_calendar.js" cache="false"></script> <script src="js/calendar/demo.js" cache="false"></script> <script src="js/sortable/jquery.sortable.js" cache="false"></script>
 <script>
 
+    var time_g1 = new Array();
+    var TreasureCnt_g1 = new Array();
+    var TreasureUserCnt_g1 = new Array();
+    var PointCnt_g1 = new Array();
+    var MoneyCnt_g1 = new Array();
+    var GuideCnt_g1 = new Array();
+    var GudieUserCnt_g1 = new Array();
+
+    var time2_g1 = new Array();
+    var TreasureCnt2_g1 = new Array();
+    var TreasureUserCnt2_g1 = new Array();
+    var PointCnt2_g1 = new Array();
+    var MoneyCnt2_g1 = new Array();
+    var GuideCnt2_g1 = new Array();
+    var GudieUserCnt2_g1 = new Array();
+    $.ajax({
+        type:"post",
+        url:"/xun/totalInfo",
+        dataType:"json",
+        success: function (data) {
+            time_g1 = data[0];
+            TreasureCnt_g1 = data[1];
+            TreasureUserCnt_g1 = data[2];
+            PointCnt_g1 = data[3];
+            MoneyCnt_g1 = data[4];
+            GuideCnt_g1 = data[5];
+            GudieUserCnt_g1 = data[6];
+
+            for (var i = 0; i < time_g1.length; i++) {
+                time2_g1[i] = time_g1[i].toString();
+                TreasureCnt2_g1[i] = parseInt(TreasureCnt_g1[i]);
+                TreasureUserCnt2_g1[i] = parseInt(TreasureUserCnt_g1[i]);
+                PointCnt2_g1[i] = parseInt(PointCnt_g1[i]);
+                MoneyCnt2_g1[i] = parseFloat(MoneyCnt_g1[i]);
+                GuideCnt2_g1[i] = parseInt(GuideCnt_g1[i]);
+                GudieUserCnt2_g1[i] = parseInt(GudieUserCnt_g1[i]);
+
+            }
+
+            var myChart = echarts.init(document.getElementById('graph1'));
+            myChart.setOption(option1);
+        }
+    });
+
     option1 = {
         title: {
             text: '寻宝统计'
@@ -191,7 +235,11 @@
             {
                 type : 'category',
                 boundaryGap : false,
-                data : ['周一','周二','周三','周四','周五','周六','周日']
+                data : time2_g1,
+                axisLabel: {
+                    interval:0,
+                    rotate:40
+                }
             }
         ],
         yAxis : [
@@ -205,35 +253,35 @@
                 type:'line',
                 stack: '总量',
                 areaStyle: {},
-                data:[120, 132, 101, 134, 90, 230, 210]
+                data:TreasureCnt2_g1
             },
             {
                 name:'寻宝用户数',
                 type:'line',
                 stack: '总量',
                 areaStyle: {},
-                data:[220, 182, 191, 234, 290, 330, 310]
+                data:TreasureUserCnt2_g1
             },
             {
                 name:'寻宝积分',
                 type:'line',
                 stack: '总量',
                 areaStyle: {},
-                data:[150, 232, 201, 154, 190, 330, 410]
+                data:PointCnt2_g1
             },
             {
                 name:'寻宝金钱',
                 type:'line',
                 stack: '总量',
                 areaStyle: {normal: {}},
-                data:[320, 332, 301, 334, 390, 330, 320]
+                data:MoneyCnt2_g1
             },
             {
                 name:'寻导游次数',
                 type:'line',
                 stack: '总量',
                 areaStyle: {normal: {}},
-                data:[500, 530, 550, 580, 600, 630, 650]
+                data:GuideCnt2_g1
             },
             {
                 name:'寻导游用户',
@@ -243,14 +291,54 @@
                     normal: {}
                 },
                 areaStyle: {normal: {}},
-                data:[820, 932, 901, 934, 1290, 1330, 1320]
+                data:GudieUserCnt2_g1
             }
         ]
     };
 
+    var city_g2 ;
+    var TreasureCnt_g2 ;
+    var TreasureUserCnt_g2;
+    var PointCnt_g2;
+    var MoneyCnt_g2;
+    var GuideCnt_g2;
+    var GudieUserCnt_g2;
 
-    var myChart = echarts.init(document.getElementById('graph1'));
-    myChart.setOption(option1);
+    var city2_g2 = new Array();
+    var TreasureCnt2_g2 = new Array();
+    var TreasureUserCnt2_g2 = new Array();
+    var PointCnt2_g2 = new Array();
+    var MoneyCnt2_g2 = new Array();
+    var GuideCnt2_g2 = new Array();
+    var GudieUserCnt2_g2 = new Array();
+    $.ajax({
+        type:"post",
+        url:"/xun/cityInfo",
+        dataType:"json",
+        success: function (data) {
+            city_g2 = data[0];
+            TreasureCnt_g2 = data[1];
+            TreasureUserCnt_g2 = data[2];
+            PointCnt_g2 = data[3];
+            MoneyCnt_g2 = data[4];
+            GuideCnt_g2 = data[5];
+            GudieUserCnt_g2 = data[6];
+
+            for (var i = 0; i < city_g2.length; i++) {
+                city2_g2[i] = city_g2[i].toString();
+                TreasureCnt2_g2[i] = parseInt(TreasureCnt_g2[i]);
+                TreasureUserCnt2_g2[i] = parseInt(TreasureUserCnt_g2[i]);
+                PointCnt2_g2[i] = parseInt(PointCnt_g2[i]);
+                MoneyCnt2_g2[i] = parseFloat(MoneyCnt_g2[i]);
+                GuideCnt2_g2[i] = parseInt(GuideCnt_g2[i]);
+                GudieUserCnt2_g2[i] = parseInt(GudieUserCnt_g2[i]);
+
+            }
+
+            var myChart = echarts.init(document.getElementById('graph2'));
+            myChart.setOption(option2);
+        }
+    });
 
     option2 = {
         title: {
@@ -279,7 +367,7 @@
         xAxis: {
             type: 'category',
             boundaryGap: false,
-            data: ['武汉','周二','周三','周四','周五','周六','周日']
+            data:city2_g2
         },
         yAxis: {
             type: 'value'
@@ -289,46 +377,78 @@
                 name:'寻宝次数',
                 type:'line',
                 stack: '总量',
-                data:[120, 132, 101, 134, 90, 230, 210]
+                data:TreasureCnt2_g2
             },
             {
                 name:'寻宝用户数',
                 type:'line',
                 stack: '总量',
-                data:[220, 182, 191, 234, 290, 330, 310]
+                data:TreasureUserCnt2_g2
             },
             {
                 name:'寻宝积分',
                 type:'line',
                 stack: '总量',
-                data:[150, 232, 201, 154, 190, 330, 410]
+                data:PointCnt2_g2
             },
             {
                 name:'寻宝金钱',
                 type:'line',
                 stack: '总量',
-                data:[320, 332, 301, 334, 390, 330, 320]
-            },
-            {
-                name:'寻导游用户数',
-                type:'line',
-                stack: '总量',
-                data:[500, 530, 550, 580, 600, 630, 650]
+                data:MoneyCnt2_g2
             },
             {
                 name:'寻导游次数',
                 type:'line',
                 stack: '总量',
-                data:[820, 932, 901, 934, 1290, 1330, 1320]
+                data:GuideCnt2_g2
+            },
+            {
+                name:'寻导游用户数',
+                type:'line',
+                stack: '总量',
+                data:GudieUserCnt2_g2
             }
         ]
     };
 
 
-    var myChart = echarts.init(document.getElementById('graph2'));
-    myChart.setOption(option2);
+    var TreasureType_g3 ;
+    var TreasureCnt_g3 ;
+    var TreasureUserCnt_g3;
+    var PointCnt_g3;
+    var MoneyCnt_g3;
 
+    var TreasureType2_g3 = new Array();
+    var TreasureCnt2_g3 = new Array();
+    var TreasureUserCnt2_g3 = new Array();
+    var PointCnt2_g3 = new Array();
+    var MoneyCnt2_g3 = new Array();
 
+    $.ajax({
+        type:"post",
+        url:"/xun/treasureTypeInfo",
+        dataType:"json",
+        success: function (data) {
+            TreasureType_g3 = data[0];
+            TreasureCnt_g3 = data[1];
+            TreasureUserCnt_g3 = data[2];
+            PointCnt_g3 = data[3];
+            MoneyCnt_g3 = data[4];
+
+            for (var i = 0; i < TreasureType_g3.length; i++) {
+                TreasureType2_g3[i] = TreasureType_g3[i].toString();
+                TreasureCnt2_g3[i] = parseInt(TreasureCnt_g3[i]);
+                TreasureUserCnt2_g3[i] = parseInt(TreasureUserCnt_g3[i]);
+                PointCnt2_g3[i] = parseInt(PointCnt_g3[i]);
+                MoneyCnt2_g3[i] = parseFloat(MoneyCnt_g3[i]);
+
+            }
+
+            var myChart = echarts.init(document.getElementById('graph3'));
+            myChart.setOption(option3);
+        }
+    });
 
     option3 = {
         title: {
@@ -361,7 +481,7 @@
         },
         yAxis: {
             type: 'category',
-            data: ['周一','周二','周三','周四','周五','周六','周日']
+            data: TreasureType2_g3
         },
         series: [
             {
@@ -374,7 +494,7 @@
                         position: 'insideRight'
                     }
                 },
-                data: [320, 302, 301, 334, 390, 330, 320]
+                data: TreasureCnt2_g3
             },
             {
                 name: '寻宝用户数',
@@ -386,7 +506,7 @@
                         position: 'insideRight'
                     }
                 },
-                data: [120, 132, 101, 134, 90, 230, 210]
+                data: TreasureUserCnt2_g3
             },
             {
                 name: '寻宝积分',
@@ -398,7 +518,7 @@
                         position: 'insideRight'
                     }
                 },
-                data: [220, 182, 191, 234, 290, 330, 310]
+                data: PointCnt2_g3
             },
             {
                 name: '寻宝金钱',
@@ -410,7 +530,7 @@
                         position: 'insideRight'
                     }
                 },
-                data: [150, 212, 201, 154, 190, 330, 410]
+                data: MoneyCnt2_g3
             }
         ]
     };

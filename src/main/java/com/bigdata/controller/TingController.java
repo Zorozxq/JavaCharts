@@ -152,7 +152,7 @@ public class TingController {
 //    }
 
     /**
-     * 听：景点类别统计
+     * 听：播放最多语音统计
      * @return
      */
     @RequestMapping(value = "/sightInfo")
@@ -177,7 +177,7 @@ public class TingController {
 //    }
 
     /**
-     * 听：播放最多语音统计
+     * 听：景点类别统计
      * @return
      */
     @RequestMapping(value = "/ChannelInfo")

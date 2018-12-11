@@ -137,16 +137,19 @@ public class XunController {
     public List<List<String>> getTreasureTypeInfo(){
         List<XunTreasureType> treasureTypeInfo = xunService.getTreasureTypeInfo();
         List<List<String>> result = new ArrayList<>();
+        List<String> xunTreasureTypeList = new ArrayList<>();
         List<String> xunTreasureCntList = new ArrayList<>();
         List<String> xunTreasureUserCntList = new ArrayList<>();
         List<String> xunPointCntList = new ArrayList<>();
         List<String> xunMoneyCntList = new ArrayList<>();
         for (XunTreasureType xunTreasureType : treasureTypeInfo) {
-            xunTreasureCntList.add(xunTreasureType.getTreasureType());
+            xunTreasureTypeList.add(xunTreasureType.getTreasureType());
+            xunTreasureCntList.add(xunTreasureType.getXunTreasureCnt().toString());
             xunTreasureUserCntList.add(xunTreasureType.getXunTreasureUserCnt().toString());
             xunPointCntList.add(xunTreasureType.getXunPointCnt().toString());
             xunMoneyCntList.add(xunTreasureType.getXunMoneyCnt().toString());
         }
+        result.add(xunTreasureTypeList);
         result.add(xunTreasureCntList);
         result.add(xunTreasureUserCntList);
         result.add(xunPointCntList);
