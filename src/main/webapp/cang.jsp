@@ -141,6 +141,43 @@
 <script src="js/app.v2.js"></script><script src="js/echarts.min.js"></script> <!-- Bootstrap --> <!-- App --> <script src="js/charts/easypiechart/jquery.easy-pie-chart.js" cache="false"></script> <script src="js/charts/sparkline/jquery.sparkline.min.js" cache="false"></script> <script src="js/charts/flot/jquery.flot.min.js" cache="false"></script> <script src="js/charts/flot/jquery.flot.tooltip.min.js" cache="false"></script> <script src="js/charts/flot/jquery.flot.resize.js" cache="false"></script> <script src="js/charts/flot/jquery.flot.grow.js" cache="false"></script> <script src="js/charts/flot/demo.js" cache="false"></script> <script src="js/calendar/bootstrap_calendar.js" cache="false"></script> <script src="js/calendar/demo.js" cache="false"></script> <script src="js/sortable/jquery.sortable.js" cache="false"></script>
 <script>
 
+
+    var time_g1;
+    var cangTreasureCnt_g1;
+    var cangTreasureUserCnt_g1;
+    var cangPoint_g1 ;
+    var cangMoney_g1 ;
+
+    var time2_g1 = new Array();
+    var cangTreasureCnt2_g1 = new Array();
+    var cangTreasureUserCnt2_g1 = new Array();
+    var cangPoint2_g1 = new Array();
+    var cangMoney2_g1 = new Array();
+
+    $.ajax({
+        type:"post",
+        url:"/cang/totalInfo",
+        dataType:"json",
+        success: function (data) {
+            time_g1 = data[0];
+            cangTreasureCnt_g1 = data[1];
+            cangTreasureUserCnt_g1 = data[2];
+            cangPoint_g1 = data[3];
+            cangMoney_g1 = data[4];
+
+            for (var i = 0; i < time_g1.length; i++) {
+                time2_g1[i] = time_g1[i].toString();
+                cangTreasureCnt2_g1[i] = parseInt(cangTreasureCnt_g1[i]);
+                cangTreasureUserCnt2_g1[i] = parseInt(cangTreasureUserCnt_g1[i]);
+                cangPoint2_g1[i] = parseInt(cangPoint_g1[i]);
+                cangMoney2_g1[i] = parseFloat(cangMoney_g1[i]);
+
+            }
+
+            var myChart = echarts.init(document.getElementById('graph1'));
+            myChart.setOption(option1);
+        }
+    });
     option1 = {
         title: {
             text: '总变化图'
@@ -177,7 +214,11 @@
             {
                 type : 'category',
                 boundaryGap : false,
-                data : ['1日','2日','3日','4日','5日','6日','7日']
+                data : time2_g1,
+                axisLabel: {
+                    interval:0,
+                    rotate:40
+                }
             }
         ],
         yAxis : [
@@ -191,34 +232,69 @@
                 type:'line',
                 stack: '总量',
                 areaStyle: {},
-                data:[120, 132, 101, 134, 90, 230, 210]
+                data:cangTreasureCnt2_g1
             },
             {
                 name:'藏宝用户数',
                 type:'line',
                 stack: '总量',
                 areaStyle: {},
-                data:[220, 182, 191, 234, 290, 330, 310]
+                data:cangTreasureUserCnt2_g1
             },
             {
                 name:'藏宝积分',
                 type:'line',
                 stack: '总量',
                 areaStyle: {},
-                data:[150, 232, 201, 154, 190, 330, 410]
+                data:cangPoint2_g1
             },
             {
                 name:'藏宝金钱',
                 type:'line',
                 stack: '总量',
                 areaStyle: {normal: {}},
-                data:[320, 332, 301, 334, 390, 330, 320]
+                data:cangMoney2_g1
             }
         ]
     };
 
-    var myChart = echarts.init(document.getElementById('graph1'));
-    myChart.setOption(option1);
+
+    var city_g2;
+    var cangTreasureCnt_g2;
+    var cangTreasureUserCnt_g2;
+    var cangPoint_g2 ;
+    var cangMoney_g2 ;
+
+    var city2_g2 = new Array();
+    var cangTreasureCnt2_g2 = new Array();
+    var cangTreasureUserCnt2_g2 = new Array();
+    var cangPoint2_g2 = new Array();
+    var cangMoney2_g2 = new Array();
+
+    $.ajax({
+        type:"post",
+        url:"/cang/cityInfo",
+        dataType:"json",
+        success: function (data) {
+            city_g2 = data[0];
+            cangTreasureCnt_g2 = data[1];
+            cangTreasureUserCnt_g2 = data[2];
+            cangPoint_g2 = data[3];
+            cangMoney_g2 = data[4];
+
+            for (var i = 0; i < city_g2.length; i++) {
+                city2_g2[i] = city_g2[i].toString();
+                cangTreasureCnt2_g2[i] = parseInt(cangTreasureCnt_g2[i]);
+                cangTreasureUserCnt2_g2[i] = parseInt(cangTreasureUserCnt_g2[i]);
+                cangPoint2_g2[i] = parseInt(cangPoint_g2[i]);
+                cangMoney2_g2[i] = parseFloat(cangMoney_g2[i]);
+
+            }
+
+            var myChart = echarts.init(document.getElementById('graph2'));
+            myChart.setOption(option2);
+        }
+    });
 
     option2 = {
         title: {
@@ -228,7 +304,7 @@
             trigger: 'axis'
         },
         legend: {
-            data:['寻宝次数','寻宝用户数','寻宝积分','寻宝金钱']
+            data:['藏宝次数','藏宝用户数','藏宝积分','藏宝金钱']
         },
         grid: {
             left: '3%',
@@ -247,41 +323,40 @@
         xAxis: {
             type: 'category',
             boundaryGap: false,
-            data: ['武汉','周二','周三','周四','周五','周六','周日']
+            data: city2_g2
         },
         yAxis: {
             type: 'value'
         },
         series: [
             {
-                name:'寻宝次数',
+                name:'藏宝次数',
                 type:'line',
                 stack: '总量',
-                data:[120, 132, 101, 134, 90, 230, 210]
+                data:cangTreasureCnt2_g2
             },
             {
-                name:'寻宝用户数',
+                name:'藏宝用户数',
                 type:'line',
                 stack: '总量',
-                data:[220, 182, 191, 234, 290, 330, 310]
+                data:cangTreasureUserCnt2_g2
             },
             {
-                name:'寻宝积分',
+                name:'藏宝积分',
                 type:'line',
                 stack: '总量',
-                data:[150, 232, 201, 154, 190, 330, 410]
+                data:cangPoint2_g2
             },
             {
-                name:'寻宝金钱',
+                name:'藏宝金钱',
                 type:'line',
                 stack: '总量',
-                data:[320, 332, 301, 334, 390, 330, 320]
+                data:cangMoney2_g2
             }
         ]
     };
 
-    var myChart = echarts.init(document.getElementById('graph2'));
-    myChart.setOption(option2);
+
 
 
     option3 = {
@@ -336,7 +411,34 @@
 
 
 
+    var cangTreasureType_g4;
+    var cangPoint_g4 ;
+    var cangMoney_g4 ;
 
+    var cangTreasureType2_g4 = new Array();
+    var cangPoint2_g4 = new Array();
+    var cangMoney2_g4 = new Array();
+
+    $.ajax({
+        type:"post",
+        url:"/cang/treasureTypePmInfo",
+        dataType:"json",
+        success: function (data) {
+            cangTreasureType_g4 = data[0];
+            cangPoint_g4 = data[1];
+            cangMoney_g4 = data[2];
+
+            for (var i = 0; i < cangTreasureType_g4.length; i++) {
+                cangTreasureType2_g4[i] = cangTreasureType_g4[i].toString();
+                cangPoint2_g4[i] = parseInt(cangPoint_g4[i]);
+                cangMoney2_g4[i] = parseFloat(cangMoney_g4[i]);
+
+            }
+
+            var myChart = echarts.init(document.getElementById('graph4'));
+            myChart.setOption(option4);
+        }
+    });
 
     option4 = {
         title: {
@@ -369,7 +471,7 @@
         },
         yAxis: {
             type: 'category',
-            data: ['周一','周二','周三','周四','周五','周六','周日']
+            data: cangTreasureType2_g4
         },
         series: [
             {
@@ -382,7 +484,7 @@
                         position: 'insideRight'
                     }
                 },
-                data: [320, 302, 301, 334, 390, 330, 320]
+                data: cangPoint2_g4
             },
             {
                 name: '藏宝金钱',
@@ -394,14 +496,13 @@
                         position: 'insideRight'
                     }
                 },
-                data: [120, 132, 101, 134, 90, 230, 210]
+                data: cangMoney2_g4
             }
         ]
     };
 
     var options = [option1, option2, option3, option4];
-    var myChart = echarts.init(document.getElementById('graph4'));
-    myChart.setOption(option4);
+
 
     function show(i) {
         var myChart = echarts.init(document.getElementById('modal-graph'));

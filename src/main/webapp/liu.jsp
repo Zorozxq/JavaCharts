@@ -141,6 +141,35 @@
 <script src="js/app.v2.js"></script><script src="js/echarts.min.js"></script> <!-- Bootstrap --> <!-- App --> <script src="js/charts/easypiechart/jquery.easy-pie-chart.js" cache="false"></script> <script src="js/charts/sparkline/jquery.sparkline.min.js" cache="false"></script> <script src="js/charts/flot/jquery.flot.min.js" cache="false"></script> <script src="js/charts/flot/jquery.flot.tooltip.min.js" cache="false"></script> <script src="js/charts/flot/jquery.flot.resize.js" cache="false"></script> <script src="js/charts/flot/jquery.flot.grow.js" cache="false"></script> <script src="js/charts/flot/demo.js" cache="false"></script> <script src="js/calendar/bootstrap_calendar.js" cache="false"></script> <script src="js/calendar/demo.js" cache="false"></script> <script src="js/sortable/jquery.sortable.js" cache="false"></script>
 <script>
 
+    var time_g1;
+    var liuCnt_g1;
+    var liuUserCnt_g1;
+
+    var time2_g1 = new Array();
+    var liuCnt2_g1 = new Array();
+    var liuUserCnt2_g1 = new Array();
+
+    $.ajax({
+        type:"post",
+        url:"/liu/totalInfo",
+        dataType:"json",
+        success: function (data) {
+            time_g1 = data[0];
+            liuCnt_g1 = data[1];
+            liuUserCnt_g1 = data[2];
+
+            for (var i = 0; i < time_g1.length; i++) {
+                time2_g1[i] = time_g1[i].toString();
+                liuCnt2_g1[i] = parseInt(liuCnt_g1[i]);
+                liuUserCnt2_g1[i] = parseInt(liuUserCnt_g1[i]);
+
+            }
+
+            var myChart = echarts.init(document.getElementById('graph1'));
+            myChart.setOption(option1);
+        }
+    });
+
     option1 = {
         title: {
             text: '总变化图'
@@ -156,7 +185,7 @@
             }
         },
         legend: {
-            data:['留用户总数','留总次数']
+            data:['留总次数','留用户总数']
         },
         toolbox: {
             feature: {
@@ -177,7 +206,11 @@
             {
                 type : 'category',
                 boundaryGap : false,
-                data : ['1日','2日','3日','4日','5日','6日','7日']
+                data : time2_g1,
+                axisLabel: {
+                    interval:0,
+                    rotate:40
+                }
             }
         ],
         yAxis : [
@@ -187,15 +220,15 @@
         ],
         series : [
             {
-                name:'留用户总数',
+                name:'留总次数',
                 type:'line',
                 stack: '总量',
                 areaStyle: {},
-                data:[150, 232, 201, 154, 190, 330, 410]
+                data:liuCnt2_g1
             },
 
             {
-                name:'留总次数',
+                name:'留用户总数',
                 type:'line',
                 stack: '总量',
                 label: {
@@ -205,13 +238,43 @@
                     }
                 },
                 areaStyle: {normal: {}},
-                data:[820, 932, 901, 934, 1290, 1330, 1320]
+                data:liuUserCnt2_g1
             }
         ]
     };
 
-    var myChart = echarts.init(document.getElementById('graph1'));
-    myChart.setOption(option1);
+    var time_g2;
+    var manCount_g2;
+    var womanCount_g2;
+    var avgCount_g2;
+
+    var time2_g2 = new Array();
+    var manCount2_g2 = new Array();
+    var womanCount2_g2 = new Array();
+    var avgCount2_g2 = new Array();
+
+    $.ajax({
+        type:"post",
+        url:"/liu/genderInfo",
+        dataType:"json",
+        success: function (data) {
+            time_g2 = data[0];
+            manCount_g2 = data[1];
+            womanCount_g2 = data[2];
+            avgCount_g2 = data[3];
+
+            for (var i = 0; i < time_g2.length; i++) {
+                time2_g2[i] = time_g2[i].toString();
+                manCount2_g2[i] = parseInt(manCount_g2[i]);
+                womanCount2_g2[i] = parseInt(womanCount_g2[i]);
+                avgCount2_g2[i] = parseFloat(avgCount_g2[i]);
+
+            }
+
+            var myChart = echarts.init(document.getElementById('graph2'));
+            myChart.setOption(option2);
+        }
+    });
 
     option2 = {
         title: {
@@ -245,7 +308,7 @@
         xAxis: [
             {
                 type: 'category',
-                data: ['1日','2日','3日','4日','5日','6日','7日','8日','9日','10日','11日','12日'],
+                data: time2_g2,
                 axisPointer: {
                     type: 'shadow'
                 }
@@ -254,22 +317,16 @@
         yAxis: [
             {
                 type: 'value',
-                name: '数据',
-                min: 0,
-                max: 250,
-                interval: 50,
+
                 axisLabel: {
-                    formatter: '{value} ml'
+
                 }
             },
             {
                 type: 'value',
-                name: '温度',
-                min: 0,
-                max: 25,
-                interval: 5,
+
                 axisLabel: {
-                    formatter: '{value} °C'
+
                 }
             }
         ],
@@ -277,25 +334,51 @@
             {
                 name:'男',
                 type:'bar',
-                data:[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
+                data:manCount2_g2
             },
             {
                 name:'女',
                 type:'bar',
-                data:[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]
+                data:womanCount2_g2
             },
             {
                 name:'平均数',
                 type:'line',
                 yAxisIndex: 1,
-                data:[2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
+                data:avgCount2_g2
             }
         ]
     };
 
-    var myChart = echarts.init(document.getElementById('graph2'));
-    myChart.setOption(option2);
 
+    var city_g3;
+    var liuCnt_g3;
+    var liuUserCnt_g3;
+
+    var city2_g3 = new Array();
+    var liuCnt2_g3 = new Array();
+    var liuUserCnt2_g3 = new Array();
+
+    $.ajax({
+        type:"post",
+        url:"liu/cityInfo",
+        dataType:"json",
+        success: function (data) {
+            city_g3 = data[0];
+            liuCnt_g3 = data[1];
+            liuUserCnt_g3 = data[2];
+
+            for (var i = 0; i < city_g3.length; i++) {
+                city2_g3[i] = city_g3[i].toString();
+                liuCnt2_g3[i] = parseInt(liuCnt_g3[i]);
+                liuUserCnt2_g3[i] = parseInt(liuUserCnt_g3[i]);
+
+            }
+
+            var myChart = echarts.init(document.getElementById('graph3'));
+            myChart.setOption(option3);
+        }
+    });
 
     option3 = {
         title: {
@@ -315,7 +398,7 @@
             }
         },
         legend: {
-            data: ['留用户数', '留次数']
+            data: ['留次数', '留用户数']
         },
         grid: {
             left: '3%',
@@ -328,21 +411,9 @@
         },
         yAxis: {
             type: 'category',
-            data: ['周一','周二','周三','周四','周五','周六','周日']
+            data:city2_g3
         },
         series: [
-            {
-                name: '留用户数',
-                type: 'bar',
-                stack: '总量',
-                label: {
-                    normal: {
-                        show: true,
-                        position: 'insideRight'
-                    }
-                },
-                data: [320, 302, 301, 334, 390, 330, 320]
-            },
             {
                 name: '留次数',
                 type: 'bar',
@@ -353,16 +424,22 @@
                         position: 'insideRight'
                     }
                 },
-                data: [120, 132, 101, 134, 90, 230, 210]
+                data: liuCnt2_g3
+            },
+            {
+                name: '留用户数',
+                type: 'bar',
+                stack: '总量',
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'insideRight'
+                    }
+                },
+                data: liuUserCnt2_g3
             }
         ]
     };
-
-
-    var myChart = echarts.init(document.getElementById('graph3'));
-    myChart.setOption(option3);
-
-
 
 
 
